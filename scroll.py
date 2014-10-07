@@ -176,7 +176,6 @@ def reload(arg):
   print 'Something went wrong reloading..'
  
 # Generate new playlists from source folders
-# - return how many songs added to list and how many total
 def generate():
  i = 0
  srcPath = '/home/music/source/out/'
@@ -188,12 +187,13 @@ def generate():
    subprocess.call(cmd, shell=True)
    print 'Generating new playlist for Stream%d' % (i+1)
    fout = sum(1 for line in open(plist))
-   print 'Added: %d' % (fout-fin)
+   print 'Total: %d New: %d' % (fout, fout-fin)
    i += 1
   except:
    print 'Error while generating playlists'
-
+   i += 1
 # Kill everything
+# Doesnt kill server yet..
 def kill():
  i = 0
  servPid, transPid = pids()
@@ -206,12 +206,11 @@ def kill():
   print 'Unable to kill processes'
   i += 1
 
-# - return how many songs added to list and how many total
 
-start = time.time()
+timerStart = time.time()
+
 if __name__ == "__main__":
  main(sys.argv[1:])
 
-# print 'Done.'
-end = time.time()
-print 'Finished in %s seconds' % (str(round(end - start, 4)))
+timerEnd = time.time()
+print 'Finished in %s seconds' % (str(round(timerEnd - timerStart, 4)))
