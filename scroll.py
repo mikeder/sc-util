@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Shoutcast Playlist/Transcoder Roller - Mike Eder 2014
+# Shoutcast Playlist/Transcoder Roller - sqweebking 2014
 
 # Imports
 import sys
@@ -185,9 +185,8 @@ def generate():
    cmd = 'find %s%d -name *.mp3 -print > %s' % (srcPath, i+1, plist)
    fin = sum(1 for line in open(plist))
    subprocess.call(cmd, shell=True)
-   print 'Generating new playlist for Stream%d' % (i+1)
    fout = sum(1 for line in open(plist))
-   print 'Total: %d New: %d' % (fout, fout-fin)
+   print 'Stream %d:  Total: %d New: %d' % (i+1, fout, fout-fin)
    i += 1
   except:
    print 'Error while generating playlists'
