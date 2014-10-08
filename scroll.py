@@ -120,10 +120,10 @@ def main(argv):
 def start(sCount):
  i = 1
  serv, trans = pids()
- if serv == '':
+ if len(serv) < 1:
   print 'Starting sc_serv'
   servPath = '/home/shoutcast/serv/'
-  cmd2 = 'cd %s && ./sc_serv sc_serv.conf &' % (servPath)
+  cmd2 = 'cd %s && ./sc_serv sc_serv.conf > /dev/null 2> /dev/null &' % (servPath)
   subprocess.call(cmd2, shell=True)
  else:
   print '(sc_serv) : Server already running.'
